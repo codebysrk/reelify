@@ -1,4 +1,4 @@
-const isMuted = { value: true }; // Global mute state
+const isMuted = { value: true };
 
 const data = [
   {
@@ -242,7 +242,6 @@ shorts.forEach((card) => {
   const progressBar = card.querySelector(".progress-bar");
 
   if (video) {
-    // For video, hide loader when enough data is available
     if (video.readyState >= 3) {
       loader.style.opacity = 0;
     } else {
@@ -256,7 +255,6 @@ shorts.forEach((card) => {
       progressBar.style.width = `${percentage}%`;
     });
   } else {
-    // For images
     const img = card.querySelector("img");
     if (img) {
       if (img.complete) {
@@ -301,17 +299,15 @@ shorts.forEach((card) => {
       holdTimer = setTimeout(() => {
         isHolding = true;
         video.pause();
-        card.classList.add("hide-ui"); // Hide UI on hold
-      }, 200); // Wait 200ms to differentiate tap from hold
+        card.classList.add("hide-ui");
+      }, 200);
     });
 
     video.addEventListener("mouseup", (e) => {
       if (holdTimer) clearTimeout(holdTimer);
       if (isHolding) {
         video.play().catch(() => { });
-        card.classList.remove("hide-ui"); // Show UI back
-        // Delay resetting isHolding so the subsequent 'click' event 
-        // knows to ignore this interaction (preventing mute/unmute).
+        card.classList.remove("hide-ui");
         setTimeout(() => {
           isHolding = false;
         }, 50);
@@ -322,14 +318,14 @@ shorts.forEach((card) => {
       if (holdTimer) clearTimeout(holdTimer);
       if (isHolding) {
         video.play().catch(() => { });
-        card.classList.remove("hide-ui"); // Show UI back
+        card.classList.remove("hide-ui");
         isHolding = false;
       }
     });
 
     video.addEventListener("click", (e) => {
       if (e.target !== video) return;
-      if (isHolding) return; // prevent tap action if it was a hold
+      if (isHolding) return;
 
       if (clickTimeout) clearTimeout(clickTimeout);
 
