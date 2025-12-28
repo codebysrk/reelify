@@ -1,7 +1,8 @@
 const data = [
   {
     id: 1,
-    media: "assets/videos/avengers.mp4",
+    media:
+      "https://res.cloudinary.com/dbom5i2yn/video/upload/v1766920515/anime_scene_n0fw56.mp4",
     username: "john_doe",
     profilePic: "https://randomuser.me/api/portraits/men/32.jpg",
     caption: "Nature vibes 🌿✨ #travel #reels",
@@ -24,7 +25,8 @@ const data = [
   },
   {
     id: 3,
-    media: "assets/videos/anime_scene.mp4",
+    media:
+      "https://res.cloudinary.com/dbom5i2yn/image/upload/v1766915827/samples/food/spices.jpg",
     username: "alex_k",
     profilePic: "https://randomuser.me/api/portraits/men/76.jpg",
     caption: "Street photography mood 📸 #citylife",
@@ -35,7 +37,8 @@ const data = [
   },
   {
     id: 4,
-    media: "assets/videos/onepiece.mp4",
+    media:
+      "https://res.cloudinary.com/dbom5i2yn/image/upload/v1766915824/samples/people/boy-snow-hoodie.jpg",
     username: "sophia",
     profilePic: "https://randomuser.me/api/portraits/women/65.jpg",
     caption: "Calm mountains, loud thoughts 🏔️",
@@ -80,7 +83,8 @@ const data = [
   },
   {
     id: 8,
-    media: "https://images.unsplash.com/photo-1500534623283-312aade485b7",
+    media:
+      "https://res.cloudinary.com/dbom5i2yn/video/upload/v1766922519/onepiece_alwede.mp4",
     username: "foodie_diaries",
     profilePic: "https://randomuser.me/api/portraits/women/72.jpg",
     caption: "Midnight cravings 🍔🔥",
@@ -114,7 +118,10 @@ const data = [
 ];
 
 const main = document.querySelector("main");
+const short = document.querySelector(".short");
+
 let reel = "";
+
 data.forEach((item) => {
   reel += `
          <section class="short">
@@ -123,6 +130,7 @@ data.forEach((item) => {
            ? `<video loop autoplay muted playsinline src="${item.media}"></video>`
            : `<img src="${item.media}" />`
        }
+       <i class="ri-heart-fill liked-dbl"></i>
 
         <div class="overlay"></div>
 
@@ -164,4 +172,25 @@ data.forEach((item) => {
       </section>
 `;
 });
+
 main.innerHTML = reel;
+
+document.querySelectorAll(".short").forEach((card) => {
+  const heart = card.querySelector(".liked-dbl");
+
+  card.addEventListener("dblclick", () => {
+    heart.classList.remove("gone");
+    heart.classList.add("active");
+
+    clearTimeout(heart.timer);
+
+    heart.timer = setTimeout(() => {
+      heart.classList.remove("active");
+      heart.classList.add("gone");
+    }, 800);
+
+    setTimeout(() => {
+      heart.classList.remove("gone");
+    }, 1300);
+  });
+});

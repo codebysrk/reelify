@@ -61,6 +61,39 @@ main {
   object-fit: cover;
   display: block;
 }
+.short .liked-dbl {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0) rotate(-60deg);
+  font-size: 6rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.3, 1.4), opacity 0.2s;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+.liked-dbl.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.2) rotate(0);
+}
+
+.liked-dbl.gone {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translate(-50%, -250%) scale(1.2) rotate(10deg);
+  opacity: 0;
+}
 
 .overlay {
   position: absolute;
@@ -81,7 +114,7 @@ main {
 .right {
   position: absolute;
   right: 3%;
-  bottom: 10%;
+  bottom: 8%;
   display: flex;
   flex-direction: column;
   align-items: center;
