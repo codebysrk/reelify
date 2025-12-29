@@ -74,7 +74,7 @@ const data = [
   },
   {
     id: 7,
-    media: "https://images.unsplash.com/photo-1517816428104-797678c7cf0c",
+    media: "https://res.cloudinary.com/dbom5i2yn/video/upload/v1767018670/foodreci_dv5dsf.mp4",
     username: "fitness_freak",
     profilePic: "https://randomuser.me/api/portraits/men/55.jpg",
     caption: "Consistency beats motivation 💪",
@@ -108,7 +108,8 @@ const data = [
   },
   {
     id: 10,
-    media: "https://res.cloudinary.com/dbom5i2yn/image/upload/v1766915842/main-sample.png",
+    media:
+      "https://res.cloudinary.com/dbom5i2yn/video/upload/v1766980069/food_ekdvmg.mp4",
     username: "creative_mind",
     profilePic: "https://randomuser.me/api/portraits/women/29.jpg",
     caption: "Creating > Consuming ✨",
@@ -150,10 +151,11 @@ let reel = "";
 data.forEach((item) => {
   reel += `
 <section class="short" data-id="${item.id}">
-  ${item.media.endsWith(".mp4")
+  ${
+    item.media.endsWith(".mp4")
       ? `<video preload="metadata" loop muted playsinline src="${item.media}"></video>`
       : `<img loading="lazy" src="${item.media}" />`
-    }
+  }
 
   <i class="ri-heart-fill liked-dbl"></i>
 
@@ -167,10 +169,11 @@ data.forEach((item) => {
 
   <div class="right">
     <div class="like-btn">
-      ${item.isLiked
-      ? `<i class="ri-heart-fill liked"></i>`
-      : `<i class="ri-heart-line"></i>`
-    }
+      ${
+        item.isLiked
+          ? `<i class="ri-heart-fill liked"></i>`
+          : `<i class="ri-heart-line"></i>`
+      }
       <h6>${item.likes}</h6>
     </div>
 
@@ -193,8 +196,9 @@ data.forEach((item) => {
     <div class="profile">
       <img src="${item.profilePic}" />
       <h2>${item.username}</h2>
-      <div class="subscribe-btn">${item.isSubscribed ? "Subscribed" : "Subscribe"
-    }</div>
+      <div class="subscribe-btn">${
+        item.isSubscribed ? "Subscribed" : "Subscribe"
+      }</div>
     </div>
     <p>${item.caption}</p>
   </footer>
@@ -306,7 +310,7 @@ shorts.forEach((card) => {
     video.addEventListener("mouseup", (e) => {
       if (holdTimer) clearTimeout(holdTimer);
       if (isHolding) {
-        video.play().catch(() => { });
+        video.play().catch(() => {});
         card.classList.remove("hide-ui");
         setTimeout(() => {
           isHolding = false;
@@ -317,7 +321,7 @@ shorts.forEach((card) => {
     video.addEventListener("mouseleave", () => {
       if (holdTimer) clearTimeout(holdTimer);
       if (isHolding) {
-        video.play().catch(() => { });
+        video.play().catch(() => {});
         card.classList.remove("hide-ui");
         isHolding = false;
       }
@@ -382,7 +386,7 @@ const observer = new IntersectionObserver(
       if (entry.isIntersecting) {
         if (video) {
           video.muted = isMuted.value;
-          video.play().catch(() => { });
+          video.play().catch(() => {});
         }
       } else {
         if (commentSection) commentSection.classList.remove("comment-active");
