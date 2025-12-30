@@ -12,6 +12,18 @@ const data = [
     comments: 132,
     isSubscribed: false,
     isLiked: false,
+    commentsList: [
+      {
+        username: "traveler_joe",
+        profilePic: "https://randomuser.me/api/portraits/men/45.jpg",
+        text: "Wow this is beautiful!",
+      },
+      {
+        username: "nature_lover",
+        profilePic: "https://randomuser.me/api/portraits/women/28.jpg",
+        text: "I need to go here 😍",
+      },
+    ],
   },
   {
     id: 2,
@@ -24,6 +36,13 @@ const data = [
     comments: 87,
     isSubscribed: true,
     isLiked: true,
+    commentsList: [
+      {
+        username: "photoguy",
+        profilePic: "https://randomuser.me/api/portraits/men/12.jpg",
+        text: "Great lighting!",
+      },
+    ],
   },
   {
     id: 3,
@@ -36,6 +55,23 @@ const data = [
     comments: 201,
     isSubscribed: false,
     isLiked: false,
+    commentsList: [
+      {
+        username: "city_walker",
+        profilePic: "https://randomuser.me/api/portraits/women/65.jpg",
+        text: "Love the vibe using this!",
+      },
+      {
+        username: "shutterbug",
+        profilePic: "https://randomuser.me/api/portraits/men/33.jpg",
+        text: "Which camera?",
+      },
+      {
+        username: "street_art",
+        profilePic: "https://randomuser.me/api/portraits/men/10.jpg",
+        text: "Dope shot 🔥",
+      },
+    ],
   },
   {
     id: 4,
@@ -48,6 +84,13 @@ const data = [
     comments: 340,
     isSubscribed: true,
     isLiked: true,
+    commentsList: [
+      {
+        username: "hiker_guru",
+        profilePic: "https://randomuser.me/api/portraits/men/55.jpg",
+        text: "Peaceful ✌️",
+      },
+    ],
   },
   {
     id: 5,
@@ -60,6 +103,18 @@ const data = [
     comments: 59,
     isSubscribed: false,
     isLiked: false,
+    commentsList: [
+      {
+        username: "dev_girl",
+        profilePic: "https://randomuser.me/api/portraits/women/21.jpg",
+        text: "Keep grinding!",
+      },
+      {
+        username: "code_ninja",
+        profilePic: "https://randomuser.me/api/portraits/men/5.jpg",
+        text: "Coffee is life ☕",
+      },
+    ],
   },
   {
     id: 6,
@@ -71,6 +126,13 @@ const data = [
     comments: 178,
     isSubscribed: true,
     isLiked: true,
+    commentsList: [
+      {
+        username: "forest_fan",
+        profilePic: "https://randomuser.me/api/portraits/men/66.jpg",
+        text: "Magical place ✨",
+      },
+    ],
   },
   {
     id: 7,
@@ -82,6 +144,18 @@ const data = [
     comments: 96,
     isSubscribed: false,
     isLiked: false,
+    commentsList: [
+      {
+        username: "gym_rat",
+        profilePic: "https://randomuser.me/api/portraits/men/88.jpg",
+        text: "True that!",
+      },
+      {
+        username: "fit_life",
+        profilePic: "https://randomuser.me/api/portraits/women/55.jpg",
+        text: "Inspiration 💯",
+      },
+    ],
   },
   {
     id: 8,
@@ -94,6 +168,13 @@ const data = [
     comments: 210,
     isSubscribed: true,
     isLiked: true,
+    commentsList: [
+      {
+        username: "burger_king",
+        profilePic: "https://randomuser.me/api/portraits/men/44.jpg",
+        text: "Looks delicious 😋",
+      },
+    ],
   },
   {
     id: 9,
@@ -105,6 +186,13 @@ const data = [
     comments: 73,
     isSubscribed: false,
     isLiked: false,
+    commentsList: [
+      {
+        username: "sound_guy",
+        profilePic: "https://randomuser.me/api/portraits/men/22.jpg",
+        text: "Best feeling ever",
+      },
+    ],
   },
   {
     id: 10,
@@ -117,45 +205,32 @@ const data = [
     comments: 415,
     isSubscribed: true,
     isLiked: true,
+    commentsList: [
+      {
+        username: "artist_soul",
+        profilePic: "https://randomuser.me/api/portraits/women/11.jpg",
+        text: "So true!",
+      },
+      {
+        username: "maker_mark",
+        profilePic: "https://randomuser.me/api/portraits/men/77.jpg",
+        text: "Keep creating!",
+      },
+    ],
   },
 ];
 
 const main = document.querySelector("main");
-
-const getDummyComments = () => `
-  <div class="single-comment">
-      <img src="https://randomuser.me/api/portraits/men/11.jpg" />
-      <div class="comm-text">
-          <h4>random_user1</h4>
-          <p>This is amazing! 🔥</p>
-      </div>
-  </div>
-  <div class="single-comment">
-      <img src="https://randomuser.me/api/portraits/women/12.jpg" />
-      <div class="comm-text">
-          <h4>sarah_lee</h4>
-          <p>Love the vibe of this video 😍</p>
-      </div>
-  </div>
-  <div class="single-comment">
-      <img src="https://randomuser.me/api/portraits/men/44.jpg" />
-      <div class="comm-text">
-          <h4>mike_tyson</h4>
-          <p>First! 😂</p>
-      </div>
-  </div>
-`;
 
 let reel = "";
 
 data.forEach((item) => {
   reel += `
 <section class="short" data-id="${item.id}">
-  ${
-    item.media.endsWith(".mp4")
+  ${item.media.endsWith(".mp4")
       ? `<video preload="metadata" loop muted playsinline src="${item.media}"></video>`
       : `<img loading="lazy" src="${item.media}" />`
-  }
+    }
 
   <i class="ri-heart-fill liked-dbl"></i>
 
@@ -169,11 +244,10 @@ data.forEach((item) => {
 
   <div class="right">
     <div class="like-btn">
-      ${
-        item.isLiked
-          ? `<i class="ri-heart-fill liked"></i>`
-          : `<i class="ri-heart-line"></i>`
-      }
+      ${item.isLiked
+      ? `<i class="ri-heart-fill liked"></i>`
+      : `<i class="ri-heart-line"></i>`
+    }
       <h6>${item.likes}</h6>
     </div>
 
@@ -196,9 +270,8 @@ data.forEach((item) => {
     <div class="profile">
       <img src="${item.profilePic}" />
       <h2>${item.username}</h2>
-      <div class="subscribe-btn">${
-        item.isSubscribed ? "Subscribed" : "Subscribe"
-      }</div>
+      <div class="subscribe-btn">${item.isSubscribed ? "Subscribed" : "Subscribe"
+    }</div>
     </div>
     <p>${item.caption}</p>
   </footer>
@@ -209,11 +282,19 @@ data.forEach((item) => {
           <i class="ri-close-line close-comment"></i>
       </div>
       <div class="comment-body">
-          ${getDummyComments()}
-      </div>
-  </div>
-      <div class="comment-body">
-          ${getDummyComments()}
+          ${item.commentsList
+      .map(
+        (comment) => `
+          <div class="single-comment">
+              <img src="${comment.profilePic}" />
+              <div class="comm-text">
+                  <h4>${comment.username}</h4>
+                  <p>${comment.text}</p>
+              </div>
+          </div>
+          `
+      )
+      .join("")}
       </div>
   </div>
 
@@ -297,34 +378,40 @@ shorts.forEach((card) => {
     let holdTimer;
     let isHolding = false;
 
-    video.addEventListener("mousedown", (e) => {
-      if (e.target !== video) return;
+    video.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+
+    video.addEventListener("pointerdown", () => {
       isHolding = false;
       holdTimer = setTimeout(() => {
         isHolding = true;
         video.pause();
         card.classList.add("hide-ui");
-      }, 200);
+      }, 300);
     });
 
-    video.addEventListener("mouseup", (e) => {
-      if (holdTimer) clearTimeout(holdTimer);
+    video.addEventListener("pointerup", () => {
+      clearTimeout(holdTimer);
       if (isHolding) {
-        video.play().catch(() => {});
-        card.classList.remove("hide-ui");
-        setTimeout(() => {
-          isHolding = false;
-        }, 50);
-      }
-    });
-
-    video.addEventListener("mouseleave", () => {
-      if (holdTimer) clearTimeout(holdTimer);
-      if (isHolding) {
-        video.play().catch(() => {});
+        video.play().catch(() => { });
         card.classList.remove("hide-ui");
         isHolding = false;
       }
+    });
+
+    video.addEventListener("pointerleave", () => {
+      clearTimeout(holdTimer);
+      if (isHolding) {
+        video.play().catch(() => { });
+        card.classList.remove("hide-ui");
+        isHolding = false;
+      }
+    });
+
+    video.addEventListener("pointercancel", () => {
+      clearTimeout(holdTimer);
+      isHolding = false;
     });
 
     video.addEventListener("click", (e) => {
@@ -386,7 +473,7 @@ const observer = new IntersectionObserver(
       if (entry.isIntersecting) {
         if (video) {
           video.muted = isMuted.value;
-          video.play().catch(() => {});
+          video.play().catch(() => { });
         }
       } else {
         if (commentSection) commentSection.classList.remove("comment-active");
